@@ -2,8 +2,8 @@ class Channel {
   final int id;
   final String name;
   final String description;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final String createdAt;
+  final String updatedAt;
 
   Channel({this.id, this.name, this.description, this.createdAt, this.updatedAt});
 

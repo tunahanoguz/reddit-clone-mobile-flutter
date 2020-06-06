@@ -1,5 +1,4 @@
-import 'package:RedditCloneMobile/models/channel_model.dart';
-import 'package:RedditCloneMobile/models/user_model.dart';
+import 'models.dart';
 
 class Topic {
   final int id;

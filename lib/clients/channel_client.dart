@@ -1,39 +1,54 @@
-import 'package:dio/dio.dart' as dioPackage;
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:RedditCloneMobile/http_client.dart';
-import 'package:RedditCloneMobile/models/channel_model.dart';
-import 'package:flutter/material.dart';
+import 'package:RedditCloneMobile/models/models.dart';
 
 class ChannelClient {
-  Future<Channel> create(String name, String description, List moderatorsIDs) async {
-    dioPackage.Response response = await dio.post("/channels", data: {
+  HttpClient httpClient = new HttpClient();
+
+  Future<Channel> create(String name, String description, List<int> moderatorIDs) async {
+    http.Response response = await httpClient.post("/channels", {
       "name": name,
       "description": description,
-      "moderatorIDs": moderatorsIDs,
+      "moderator_ids": moderatorIDs
     });
-    var data = response.data;
+    var data = json.decode(response.body);
     Channel channel = Channel.fromJson(data);
     return channel;
   }
   
   Future<List<Channel>> getAll() async {
-    dioPackage.Response response = await dio.get("/channels");
-    debugPrint(response.data["data"].toString());
-    List<dynamic> data = response.data["data"];
+    http.Response response = await httpClient.get("/channels");
+    List<dynamic> data = json.decode(response.body)["data"];
     List<Channel> channels = data.map((channel) => Channel.fromJson(channel)).toList();
     return channels;
   }
 
   Future<Channel> getSingle(int id) async {
-    dioPackage.Response response = await dio.get("/channels/$id");
-    var data = response.data;
+    http.Response response = await httpClient.get("/channels/$id");
+    var data = json.decode(response.body);
     Channel channel = Channel.fromJson(data);
     return channel;
   }
 
-  Future<Channel> update(int id) async {
-    dioPackage.Response response = await dio.put("/channels/$id");
-    var data = response.data;
+  Future<Channel> update(int id, String name, String description, List<int> moderatorIDs) async {
+    http.Response response = await httpClient.put("/channels/$id", {
+      "name": name,
+      "description": description,
+      "moderator_ids": moderatorIDs,
+    });
+    var data = json.decode(response.body);
     Channel channel = Channel.fromJson(data);
     return channel;
+  }
+
+  Future<bool> delete(int id) async {
+    http.Response response = await httpClient.delete("/channels/$id");
+
+    if (response.statusCode == 200) {
+      return true;
+    }
+
+    return false;
   }
 }

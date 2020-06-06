@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:RedditCloneMobile/http_client.dart';
 import 'package:RedditCloneMobile/models/models.dart';
@@ -13,6 +14,7 @@ class ChannelClient {
       "moderator_ids": moderatorIDs
     });
     var data = json.decode(response.body);
+    debugPrint(data.toString());
     Channel channel = Channel.fromJson(data);
     return channel;
   }

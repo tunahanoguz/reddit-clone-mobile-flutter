@@ -1,5 +1,5 @@
-import 'package:RedditCloneMobile/clients/channel_client.dart';
 import 'package:RedditCloneMobile/models/models.dart';
+import 'package:RedditCloneMobile/clients/clients.dart';
 
 class ChannelRepository {
   final ChannelClient channelClient;

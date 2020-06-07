@@ -1,4 +1,4 @@
-import 'package:RedditCloneMobile/clients/user_client.dart';
+import 'package:RedditCloneMobile/clients/clients.dart';
 
 class UserRepository {
   final UserClient userClient;

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'user_state.dart';
 import 'user_event.dart';
-import 'package:RedditCloneMobile/repositories/user_repository.dart';
+import 'package:RedditCloneMobile/repositories/repositories.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   final UserRepository userRepository;

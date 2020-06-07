@@ -1,5 +1,5 @@
 import 'package:RedditCloneMobile/models/models.dart';
-import 'package:RedditCloneMobile/repositories/channel_repository.dart';
+import 'package:RedditCloneMobile/repositories/repositories.dart';
 import 'package:bloc/bloc.dart';
 
 import 'package:RedditCloneMobile/bloc/channel/channel_event.dart';

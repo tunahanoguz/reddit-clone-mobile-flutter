@@ -1,5 +1,5 @@
-import 'package:RedditCloneMobile/models/models.dart';
 import 'package:equatable/equatable.dart';
+import 'package:RedditCloneMobile/models/models.dart';
 
 abstract class ChannelComplaintState extends Equatable {
   const ChannelComplaintState();

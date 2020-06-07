@@ -14,7 +14,6 @@ class ChannelClient {
       "moderator_ids": moderatorIDs
     });
     var data = json.decode(response.body);
-    debugPrint(data.toString());
     Channel channel = Channel.fromJson(data);
     return channel;
   }

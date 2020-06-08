@@ -4,10 +4,10 @@ import 'package:RedditCloneMobile/repositories/repositories.dart';
 import 'topic_comment_media_event.dart';
 import 'topic_comment_media_state.dart';
 
-class TopicMediaBloc extends Bloc<TopicCommentMediaEvent, TopicCommentMediaState> {
-  TopicMediaRepository topicMediaRepository;
-  TopicMediaBloc({this.topicMediaRepository})
-      : assert(topicMediaRepository != null);
+class TopicCommentMediaBloc extends Bloc<TopicCommentMediaEvent, TopicCommentMediaState> {
+  TopicCommentMediaRepository topicCommentMediaRepository;
+  TopicCommentMediaBloc({this.topicCommentMediaRepository})
+      : assert(topicCommentMediaRepository != null);
 
   @override
   TopicCommentMediaState get initialState => TopicCommentMediaLoading();
@@ -18,7 +18,7 @@ class TopicMediaBloc extends Bloc<TopicCommentMediaEvent, TopicCommentMediaState
       yield TopicCommentMediaCreating();
 
       try {
-        Media media = await topicMediaRepository.create(event.name,
+        Media media = await topicCommentMediaRepository.create(event.name,
             event.description, event.order, event.type, event.topicCommentID);
         yield TopicCommentMediaCreated(media: media);
       } catch (_) {
@@ -28,7 +28,7 @@ class TopicMediaBloc extends Bloc<TopicCommentMediaEvent, TopicCommentMediaState
       yield TopicCommentMediaLoading();
 
       try {
-        List<Media> media = await topicMediaRepository.getAll(event.topicCommentID);
+        List<Media> media = await topicCommentMediaRepository.getAll(event.topicCommentID);
         yield TopicCommentMediaLoaded(media: media);
       } catch (_) {
         yield TopicCommentMediaNotLoaded();
@@ -37,7 +37,7 @@ class TopicMediaBloc extends Bloc<TopicCommentMediaEvent, TopicCommentMediaState
       yield TopicCommentMediaDeleting();
 
       try {
-        bool isDeleted = await topicMediaRepository.delete(event.id);
+        bool isDeleted = await topicCommentMediaRepository.delete(event.id);
 
         if (isDeleted == true) {
           yield TopicCommentMediaDeleted();

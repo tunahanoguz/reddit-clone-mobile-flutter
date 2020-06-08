@@ -4,9 +4,9 @@ import 'package:RedditCloneMobile/repositories/repositories.dart';
 import 'topic_comment_complaint_event.dart';
 import 'topic_comment_complaint_state.dart';
 
-class TopicComplaintBloc extends Bloc<TopicCommentComplaintEvent, TopicCommentComplaintState> {
-  final TopicComplaintRepository topicComplaintRepository;
-  TopicComplaintBloc({this.topicComplaintRepository}) : assert(topicComplaintRepository != null);
+class TopicCommentComplaintBloc extends Bloc<TopicCommentComplaintEvent, TopicCommentComplaintState> {
+  final TopicCommentComplaintRepository topicCommentComplaintRepository;
+  TopicCommentComplaintBloc({this.topicCommentComplaintRepository}) : assert(topicCommentComplaintRepository != null);
 
   @override
   TopicCommentComplaintState get initialState => TopicCommentComplaintCreating();
@@ -17,7 +17,7 @@ class TopicComplaintBloc extends Bloc<TopicCommentComplaintEvent, TopicCommentCo
       yield TopicCommentComplaintCreating();
 
       try {
-        Complaint complaint = await topicComplaintRepository.create(event.email, event.body, event.complaintCategoryID, event.topicCommentID);
+        Complaint complaint = await topicCommentComplaintRepository.create(event.email, event.body, event.complaintCategoryID, event.topicCommentID);
         yield TopicCommentComplaintCreated(complaint: complaint);
       } catch (_) {
         yield TopicCommentComplaintNotCreated();

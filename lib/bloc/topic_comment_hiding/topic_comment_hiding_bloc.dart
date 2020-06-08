@@ -4,9 +4,9 @@ import 'package:RedditCloneMobile/repositories/repositories.dart';
 import 'topic_comment_hiding_event.dart';
 import 'topic_comment_hiding_state.dart';
 
-class TopicHidingBloc extends Bloc<TopicCommentHidingEvent, TopicCommentHidingState> {
-  final TopicHidingRepository topicHidingRepository;
-  TopicHidingBloc({this.topicHidingRepository}) : assert(topicHidingRepository != null);
+class TopicCommentHidingBloc extends Bloc<TopicCommentHidingEvent, TopicCommentHidingState> {
+  final TopicCommentHidingRepository topicCommentHidingRepository;
+  TopicCommentHidingBloc({this.topicCommentHidingRepository}) : assert(topicCommentHidingRepository != null);
 
   @override
   TopicCommentHidingState get initialState => TopicCommentHidingsLoading();
@@ -17,7 +17,7 @@ class TopicHidingBloc extends Bloc<TopicCommentHidingEvent, TopicCommentHidingSt
       yield TopicCommentHidingCreating();
 
       try {
-        Hiding hiding = await topicHidingRepository.create(event.userID, event.topicID);
+        Hiding hiding = await topicCommentHidingRepository.create(event.userID, event.topicID);
         yield TopicCommentHidingCreated(hiding: hiding);
       } catch (_) {
         yield TopicCommentHidingNotCreated();
